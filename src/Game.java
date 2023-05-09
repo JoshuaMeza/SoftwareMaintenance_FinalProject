@@ -27,10 +27,11 @@ public class Game
     /**
      * Create the game and initialise its internal map.
      */
-    public Game() 
+    public Game(ICLI view) 
     {
+        this.view = view;
         createRooms();
-        parser = new Parser();
+        parser = new Parser(view);
     }
 
     /**
@@ -75,7 +76,7 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        view.print("Thank you for playing. Good bye.\n");
     }
 
     /**
@@ -89,20 +90,20 @@ public class Game
 
     private void printWhereAmI()
     {
-        view.warningMsg("You are " + currentRoom.getDescription()+"\n");
+        view.print("You are " + currentRoom.getDescription()+"\n");
         view.warningMsg("Exits: \n");
         
         if(currentRoom.northExit != null) {
-            view.successMsg("north ");
+            view.print("north ");
         }
         if(currentRoom.eastExit != null) {
-            view.successMsg("east ");
+            view.print("east ");
         }
         if(currentRoom.southExit != null) {
-            view.successMsg("south ");
+            view.print("south ");
         }
         if(currentRoom.westExit != null) {
-            view.successMsg("west ");
+            view.print("west ");
         }
         System.out.println();
     }
@@ -172,21 +173,21 @@ public class Game
         }
 
         currentRoom = nextRoom;
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
+        view.print("You are " + currentRoom.getDescription());
+        view.print("Exits: ");
         if(currentRoom.northExit != null) {
-            System.out.print("north ");
+            view.print("north ");
         }
         if(currentRoom.eastExit != null) {
-            System.out.print("east ");
+            view.print("east ");
         }
         if(currentRoom.southExit != null) {
-            System.out.print("south ");
+            view.print("south ");
         }
         if(currentRoom.westExit != null) {
-            System.out.print("west ");
+            view.print("west ");
         }
-        System.out.println();
+        view.print("\n");
     }
 
     /** 
