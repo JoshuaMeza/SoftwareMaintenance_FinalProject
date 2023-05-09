@@ -1,4 +1,8 @@
 package src;
+
+import src.world.Handler;
+import src.world.JsonConcreteHandler;
+
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -21,6 +25,7 @@ import src.view.*;
 public class Game 
 {
     private ICLI view;
+    private Handler worldLoaderHandler;
     private Parser parser;
     private Room currentRoom;
         
@@ -39,23 +44,8 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theatre, pub, lab, office;
-      
-        // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
-        
-        // initialise room exits
-        outside.setExits(null, theatre, lab, pub);
-        theatre.setExits(null, null, null, outside);
-        pub.setExits(null, outside, null, null);
-        lab.setExits(outside, office, null, null);
-        office.setExits(null, null, null, lab);
-
-        currentRoom = outside;  // start game outside
+        this.worldLoaderHandler = new JsonConcreteHandler();
+        currentRoom = worldLoaderHandler.handle();
     }
 
     /**
