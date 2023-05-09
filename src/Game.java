@@ -2,6 +2,7 @@ package src;
 
 import src.world.Handler;
 import src.world.JsonConcreteHandler;
+import src.world.XmlConcreteHandler;
 
 /**
  *  This class is the main class of the "World of Zuul" application. 
@@ -45,6 +46,7 @@ public class Game
     private void createRooms()
     {
         this.worldLoaderHandler = new JsonConcreteHandler();
+        worldLoaderHandler.setNext(new XmlConcreteHandler());
         currentRoom = worldLoaderHandler.handle();
     }
 

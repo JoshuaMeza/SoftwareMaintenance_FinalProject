@@ -1,0 +1,38 @@
+<root>
+    <main>Outside</main>
+    <room id = "Outside">
+        <northexit></northexit>
+        <eastexit>Theatre</eastexit>
+        <southexit>Lab</southexit>
+        <westexit>Pub</westexit>
+        <description>outside the main entrance of the university</description>
+    </room>
+    <room id = "Theatre">
+        <northexit></northexit>
+        <eastexit></eastexit>
+        <southexit></southexit>
+        <westexit>Outside</westexit>
+        <description>in a lecture theatre</description>
+    </room>
+    <room id = "Pub">
+        <northexit></northexit>
+        <eastexit>Outside</eastexit>
+        <southexit></southexit>
+        <westexit></westexit>
+        <description>in the campus pub</description>
+    </room>
+    <room id = "Lab">
+        <northexit>Outside</northexit>
+        <eastexit>Office</eastexit>
+        <southexit></southexit>
+        <westexit></westexit>
+        <description>in a computing lab</description>
+    </room>
+    <room id = "Office">
+        <northexit></northexit>
+        <eastexit></eastexit>
+        <southexit></southexit>
+        <westexit>Lab</westexit>
+        <description>in the computing admin office</description>
+    </room>
+</root>

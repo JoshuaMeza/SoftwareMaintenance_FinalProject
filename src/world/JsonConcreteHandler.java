@@ -12,7 +12,7 @@ import org.json.simple.parser.JSONParser;
 import src.Room;
 
 public class JsonConcreteHandler extends WorldConfigurationHandler {
-    private final String SOURCE_PATH = "./config/settings.json";
+    private final String SOURCE_PATH = "./config/setting.json";
 
     @Override
     public Room handle() {
