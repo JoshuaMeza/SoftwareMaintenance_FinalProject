@@ -47,7 +47,11 @@ public class Game
     {
         this.worldLoaderHandler = new JsonConcreteHandler();
         worldLoaderHandler.setNext(new XmlConcreteHandler());
-        currentRoom = worldLoaderHandler.handle();
+        this.currentRoom = worldLoaderHandler.handle();
+        
+        if (currentRoom == null) {
+            this.currentRoom = new Room("CONFIGURATION NOT FOUND!");
+        }
     }
 
     /**
