@@ -1,0 +1,17 @@
+{
+    "Welcome" : "¡Bienvenido a World of Zuul!\nWorld of Zuul es un juego de aventuras nuevo e increíblemente aburrido.\nEscribe 'ayuda' si necesitas ayuda.\n",
+    "You_are" : "Estás ",
+    "Exits" : "Salidas: \n",
+    "North" : "norte ",
+    "East" : "este ",
+    "South" : "sur ",
+    "West" : "oeste ",
+    "Unknown" : "No sé qué quisiste decir...",
+    "Help" : "Estás perdido. Usted está solo. Deambulas\npor la universidad.\n\nTus palabras de mando son:\n",
+    "Commands" : "   ir quitar ayuda",
+    "Invalid_command" : "Comando inválido. Debes especificar a dónde ir",
+    "Not_door" : "No hay puerta!",
+    "Quit" : "Dejar qué?\n",
+    "Bye" : "Gracias por jugar. Adiós",
+    "Not_found" : "CONFIGURACIÓN NO ENCONTRADA!"
+}
