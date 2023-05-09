@@ -16,18 +16,22 @@ package src;
  * @version 2008.03.30
  */
 
+import src.view.*;
+
 public class Game 
 {
+    private ICLI view;
     private Parser parser;
     private Room currentRoom;
         
     /**
      * Create the game and initialise its internal map.
      */
-    public Game() 
+    public Game(ICLI view) 
     {
+        this.view = view;
         createRooms();
-        parser = new Parser();
+        parser = new Parser(view);
     }
 
     /**
@@ -58,8 +62,11 @@ public class Game
      *  Main play routine.  Loops until end of play.
      */
     public void play() 
-    {            
-        printWelcome();
+    {      
+        view.clear();
+
+        view.successMsg(printWelcome());
+        printWhereAmI();
 
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
@@ -69,34 +76,37 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        view.print("Thank you for playing. Good bye.\n");
+        view.clear();
     }
 
     /**
      * Print out the opening message for the player.
      */
-    private void printWelcome()
+    private String printWelcome(){
+        return "Welcome to the World of Zuul!\n" +
+                "World of Zuul is a new, incredibly boring adventure game.\n" +
+                "Type 'help' if you need help.\n";
+    }
+
+    private void printWhereAmI()
     {
-        System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type 'help' if you need help.");
-        System.out.println();
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
+        view.print("You are " + currentRoom.getDescription()+"\n");
+        view.print("Exits: \n");
+        
         if(currentRoom.northExit != null) {
-            System.out.print("north ");
+            view.warningMsg("north ");
         }
         if(currentRoom.eastExit != null) {
-            System.out.print("east ");
+            view.warningMsg("east ");
         }
         if(currentRoom.southExit != null) {
-            System.out.print("south ");
+            view.warningMsg("south ");
         }
         if(currentRoom.westExit != null) {
-            System.out.print("west ");
+            view.warningMsg("west ");
         }
-        System.out.println();
+        view.print("\n");
     }
 
     /**
@@ -109,7 +119,7 @@ public class Game
         boolean wantToQuit = false;
 
         if(command.isUnknown()) {
-            System.out.println("I don't know what you mean...");
+            view.dangerMsg("I don't know what you mean...\n");
             return false;
         }
 
@@ -133,11 +143,11 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
-        System.out.println();
-        System.out.println("Your command words are:");
-        System.out.println("   go quit help");
+        view.warningMsg("You are lost. You are alone. You wander\n" + 
+        "around at the university.\n"+
+        "\n"+
+        "Your command words are:\n");
+        view.successMsg("   go quit help");
     }
 
     /** 
@@ -168,21 +178,21 @@ public class Game
         }
 
         currentRoom = nextRoom;
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
+        view.print("You are " + currentRoom.getDescription());
+        view.print("Exits: ");
         if(currentRoom.northExit != null) {
-            System.out.print("north ");
+            view.warningMsg("north ");
         }
         if(currentRoom.eastExit != null) {
-            System.out.print("east ");
+            view.warningMsg("east ");
         }
         if(currentRoom.southExit != null) {
-            System.out.print("south ");
+            view.warningMsg("south ");
         }
         if(currentRoom.westExit != null) {
-            System.out.print("west ");
+            view.warningMsg("west ");
         }
-        System.out.println();
+        view.print("\n");
     }
 
     /** 
@@ -193,7 +203,7 @@ public class Game
     private boolean quit(Command command) 
     {
         if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
+            view.dangerMsg("Quit what?\n");
             return false;
         }
         else {

@@ -2,6 +2,8 @@ package src;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import src.view.ICLI;
+
 /**
  * This class is part of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.  
@@ -22,12 +24,14 @@ public class Parser
 {
     private CommandWords commands;  // holds all valid command words
     private Scanner reader;         // source of command input
+    private ICLI view;
 
     /**
      * Create a parser to read from the terminal window.
      */
-    public Parser() 
+    public Parser(ICLI view) 
     {
+        this.view = view;
         commands = new CommandWords();
         reader = new Scanner(System.in);
     }
@@ -41,9 +45,7 @@ public class Parser
         String word1 = null;
         String word2 = null;
 
-        System.out.print("> ");     // print prompt
-
-        inputLine = reader.nextLine();
+        inputLine = view.read("> ");     // print prompt
 
         // Find up to two words on the line.
         Scanner tokenizer = new Scanner(inputLine);
