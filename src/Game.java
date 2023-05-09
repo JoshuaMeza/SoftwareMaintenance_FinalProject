@@ -77,6 +77,7 @@ public class Game
             finished = processCommand(command);
         }
         view.print("Thank you for playing. Good bye.\n");
+        view.clear();
     }
 
     /**
@@ -91,21 +92,21 @@ public class Game
     private void printWhereAmI()
     {
         view.print("You are " + currentRoom.getDescription()+"\n");
-        view.warningMsg("Exits: \n");
+        view.print("Exits: \n");
         
         if(currentRoom.northExit != null) {
-            view.print("north ");
+            view.warningMsg("north ");
         }
         if(currentRoom.eastExit != null) {
-            view.print("east ");
+            view.warningMsg("east ");
         }
         if(currentRoom.southExit != null) {
-            view.print("south ");
+            view.warningMsg("south ");
         }
         if(currentRoom.westExit != null) {
-            view.print("west ");
+            view.warningMsg("west ");
         }
-        System.out.println();
+        view.print("\n");
     }
 
     /**
@@ -176,16 +177,16 @@ public class Game
         view.print("You are " + currentRoom.getDescription());
         view.print("Exits: ");
         if(currentRoom.northExit != null) {
-            view.print("north ");
+            view.warningMsg("north ");
         }
         if(currentRoom.eastExit != null) {
-            view.print("east ");
+            view.warningMsg("east ");
         }
         if(currentRoom.southExit != null) {
-            view.print("south ");
+            view.warningMsg("south ");
         }
         if(currentRoom.westExit != null) {
-            view.print("west ");
+            view.warningMsg("west ");
         }
         view.print("\n");
     }
