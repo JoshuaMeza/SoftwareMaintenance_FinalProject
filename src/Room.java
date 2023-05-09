@@ -1,25 +1,19 @@
 package src;
-/**
- * Class Room - a room in an adventure game.
- *
- * This class is part of the "World of Zuul" application. 
- * "World of Zuul" is a very simple, text based adventure game.  
- *
- * A "Room" represents one location in the scenery of the game.  It is 
- * connected to other rooms via exits.  The exits are labelled north, 
- * east, south, west.  For each direction, the room stores a reference
- * to the neighboring room, or null if there is no exit in that direction.
- * 
- * @author  Michael Kolling and David J. Barnes
- * @version 2008.03.30
- */
-public class Room 
-{
+
+public class Room {
     public String description;
     public Room northExit;
     public Room southExit;
     public Room eastExit;
     public Room westExit;
+
+    public boolean isNull() {
+        return false;
+    }
+
+    public boolean accesible() {
+        return true;
+    }
 
     /**
      * Create a room described "description". Initially, it has
@@ -60,4 +54,23 @@ public class Room
         return description;
     }
 
+    public void connectNorth(Room room) {
+        this.northExit = room;
+        room.northExit = this;
+    }
+    
+    public void connectSouth(Room room) {
+        this.southExit = room;
+        room.southExit = this;
+    }
+    
+    public void connectEast(Room room) {
+        this.eastExit = room;
+        room.eastExit = this;
+    }
+    
+    public void connectWest(Room room) {
+        this.westExit = room;
+        room.westExit = this;
+    }
 }
