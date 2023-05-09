@@ -146,6 +146,10 @@ public class Game
      */
     private void goRoom(Command command) 
     {
+        if(!command.hasSecondWord()){
+            System.out.println("Invalid command. You must specify where to go");
+            return;
+        }
         String direction = command.getSecondWord();
 
         // Try to leave current room.
